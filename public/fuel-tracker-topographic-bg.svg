@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900" fill="none">
+  <rect width="1800" height="900" fill="#FAFAF8"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-80 82C60 10 188-20 330 28C472 76 576 82 728 28C880-26 1022-16 1162 64C1302 144 1454 162 1608 86C1708 36 1788 24 1880 50" stroke="#9B9B92" stroke-width="1.4" opacity="0.32"/>
+    <path d="M-80 122C62 52 198 28 334 68C470 108 586 118 730 70C874 22 1014 28 1152 100C1290 172 1452 190 1604 124C1712 78 1790 66 1880 86" stroke="#9B9B92" stroke-width="1.1" opacity="0.26"/>
+    <path d="M-80 162C72 96 210 78 342 108C474 138 596 154 736 112C876 70 1012 74 1148 136C1284 198 1450 218 1600 162C1714 120 1794 110 1880 124" stroke="#9B9B92" stroke-width="1" opacity="0.22"/>
+    <path d="M-80 202C78 142 218 126 350 148C482 170 608 190 744 154C880 118 1010 124 1144 174C1278 224 1446 250 1594 204C1718 166 1798 154 1880 166" stroke="#9B9B92" stroke-width="1" opacity="0.18"/>
+
+    <path d="M-120 372C52 286 196 310 314 382C432 454 556 474 694 392C832 310 940 286 1062 360C1184 434 1300 470 1440 398C1580 326 1700 304 1880 372" stroke="#6F6F68" stroke-width="1.7" opacity="0.48"/>
+    <path d="M-120 418C48 340 196 356 316 426C436 496 568 518 704 438C840 358 942 342 1058 408C1174 474 1300 512 1444 442C1588 372 1708 354 1880 420" stroke="#9B9B92" stroke-width="1.1" opacity="0.32"/>
+    <path d="M-120 462C50 392 196 404 318 470C440 536 580 558 714 482C848 406 948 396 1056 456C1164 516 1300 556 1448 488C1596 420 1714 404 1880 470" stroke="#9B9B92" stroke-width="1" opacity="0.25"/>
+    <path d="M-120 506C54 444 200 452 324 514C448 576 594 604 728 528C862 452 956 448 1058 502C1160 556 1302 598 1454 534C1606 470 1722 454 1880 520" stroke="#9B9B92" stroke-width="1" opacity="0.2"/>
+    <path d="M-120 550C62 498 208 502 332 558C456 614 604 650 742 574C880 498 970 502 1066 550C1162 598 1310 644 1464 584C1618 524 1730 506 1880 572" stroke="#9B9B92" stroke-width="1" opacity="0.17"/>
+
+    <path d="M-100 742C78 690 242 704 390 758C538 812 706 822 866 758C1026 694 1168 654 1332 694C1496 734 1640 780 1880 730" stroke="#6F6F68" stroke-width="1.6" opacity="0.44"/>
+    <path d="M-100 786C82 740 246 752 392 802C538 852 708 862 872 802C1036 742 1174 704 1336 738C1498 772 1640 824 1880 774" stroke="#9B9B92" stroke-width="1.1" opacity="0.28"/>
+    <path d="M-100 830C84 788 250 800 396 846C542 892 710 902 878 846C1046 790 1180 756 1340 784C1500 812 1640 866 1880 820" stroke="#9B9B92" stroke-width="1" opacity="0.2"/>
+
+    <ellipse cx="852" cy="86" rx="178" ry="66" transform="rotate(-12 852 86)" stroke="#6F6F68" stroke-width="1.6" opacity="0.44"/>
+    <ellipse cx="852" cy="86" rx="136" ry="48" transform="rotate(-12 852 86)" stroke="#9B9B92" stroke-width="1" opacity="0.3"/>
+    <ellipse cx="852" cy="86" rx="92" ry="30" transform="rotate(-12 852 86)" stroke="#9B9B92" stroke-width="1" opacity="0.22"/>
+
+    <ellipse cx="1708" cy="62" rx="138" ry="56" transform="rotate(-4 1708 62)" stroke="#6F6F68" stroke-width="1.5" opacity="0.42"/>
+    <ellipse cx="1708" cy="62" rx="92" ry="36" transform="rotate(-4 1708 62)" stroke="#9B9B92" stroke-width="1" opacity="0.27"/>
+    <ellipse cx="1708" cy="62" rx="48" ry="18" transform="rotate(-4 1708 62)" stroke="#9B9B92" stroke-width="1" opacity="0.22"/>
+
+    <ellipse cx="1728" cy="462" rx="168" ry="82" transform="rotate(-8 1728 462)" stroke="#9B9B92" stroke-width="1" opacity="0.26"/>
+    <ellipse cx="1728" cy="462" rx="112" ry="52" transform="rotate(-8 1728 462)" stroke="#9B9B92" stroke-width="1" opacity="0.22"/>
+    <ellipse cx="1728" cy="462" rx="34" ry="22" transform="rotate(-8 1728 462)" stroke="#6F6F68" stroke-width="1.5" opacity="0.44"/>
+
+    <ellipse cx="330" cy="858" rx="150" ry="58" transform="rotate(-22 330 858)" stroke="#9B9B92" stroke-width="1" opacity="0.24"/>
+    <ellipse cx="330" cy="858" rx="92" ry="34" transform="rotate(-22 330 858)" stroke="#9B9B92" stroke-width="1" opacity="0.18"/>
+
+    <ellipse cx="1150" cy="885" rx="128" ry="50" transform="rotate(4 1150 885)" stroke="#9B9B92" stroke-width="1" opacity="0.18"/>
+    <ellipse cx="1370" cy="122" rx="30" ry="22" transform="rotate(-20 1370 122)" stroke="#9B9B92" stroke-width="1" opacity="0.26"/>
+  </g>
+</svg>
