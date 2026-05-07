@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
+import { ReactQueryProvider } from "@/app/components/ReactQueryProvider";
 import "./globals.css";
 
 const geist = Geist({
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Fuel Tracker DK",
+  title: "Fuelprice Tracker DK",
   description: "Live fuel prices across Denmark — find the cheapest station near you",
   icons: { icon: "/favicon.ico" },
 };
@@ -24,8 +25,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="da" suppressHydrationWarning>
       <body className={`${geist.variable} ${geistMono.variable}`}>
-        {/* ThemeProvider reads localStorage and sets data-theme on <html> */}
-        <ThemeProvider>{children}</ThemeProvider>
+        <ReactQueryProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
