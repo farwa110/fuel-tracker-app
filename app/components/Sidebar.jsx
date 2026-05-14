@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { MapPinned, Building2, History, Star } from "lucide-react";
 
 const navItems = [
@@ -15,31 +16,38 @@ export default function Sidebar({ activeTab = "nearby", onTabChange, updatedAt }
   return (
     <aside
       className="
-        fixed left-0 top-0 z-50 hidden h-dvh w-60
-        border-r border-[var(--border)]
-        bg-[color-mix(in_srgb,var(--bg)_90%,transparent)]
-        px-5 py-5 backdrop-blur-xl
-        lg:flex lg:flex-col
-      "
+    fixed left-0 top-0 z-50 hidden h-dvh w-60
+    border-r border-(--border)
+  bg-[color-mix(in_srgb,var(--bg)_92%,transparent)]
+    px-5 py-5 backdrop-blur-2xl
+    lg:flex lg:flex-col
+  "
     >
       <div className="pb-8">
-        <div className="flex items-start gap-2.5 px-1">
-          <div className="relative -mt-1 h-[58px] w-[58px] shrink-0">
-            <Image src="/petrol-logo.png" alt="Fuelprice Tracker DK logo" fill className="object-contain" priority />
-          </div>
+        <div className="flex items-start gap-3.5 px-1">
+          {/* Logo — tall to match two-line text height */}
 
-          <div className="min-w-0 pt-1">
-            <div className="flex items-center gap-2">
-              <h1 className="truncate text-[20px] font-extrabold leading-none text-[var(--text-primary)]">Fuelprice</h1>
-
-              <span className="rounded-md bg-[#1b1b1d] px-1.5 py-0.5 text-[8px] font-bold tracking-[0.12em] text-white">DK</span>
+          {/* <div className="shrink-0 w-10 h-16 overflow-hidden flex items-center justify-center">
+            <Image src="/logo-grey.png" href="/" alt="Fuelprice Tracker DK logo" width={80} height={80} className="object-contain scale-[2.2] translate-y-1" priority />
+          </div> */}
+          <Link href="/">
+            <Image src="/logo-grey.png" alt="Fuelprice Tracker DK logo" width={80} height={80} className="object-contain scale-[2.2] translate-y-1" priority />
+          </Link>
+          {/* Text */}
+          <div className="flex flex-col pt-0.5">
+            {/* Title + Badge */}
+            <div className="flex items-center gap-2 leading-none">
+              <h1 className="text-[20px] font-medium tracking-tight text-(--text-primary)">Fuelprice</h1>
+              <span className="bg-[#1b1b1d] text-white text-[9px] font-bold tracking-[0.12em] px-1.5 py-0.5 rounded-[5px] leading-none">DK</span>
             </div>
 
-            <div className="mt-[5px] pl-px text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c99a3a]">TRACKER</div>
+            {/* Subtitle */}
+            <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-(--text-secondary)">Tracker</div>
 
+            {/* Updated at */}
             {updatedAt && (
-              <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[var(--text-secondary)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--green)]" />
+              <div className="mt-2.5 flex items-center gap-1.5 text-[11px] text-(--text-secondary)">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
                 <span>
                   Updated{" "}
                   {new Date(updatedAt).toLocaleTimeString("da-DK", {
@@ -67,14 +75,20 @@ export default function Sidebar({ activeTab = "nearby", onTabChange, updatedAt }
               className={`
                 flex w-full items-center gap-3 rounded-2xl px-4 py-3
                 text-left text-sm font-medium transition
-                ${isActive ? "bg-[#1f1f1f] text-white shadow-[var(--shadow-md)]" : "text-[var(--text-secondary)] hover:bg-[var(--surface)] hover:text-[var(--text-primary)]"}
+                ${isActive ? "bg-(--surface-raised) text-(--text-primary) shadow-(--shadow-md)" : "text-(--text-secondary) hover:bg-(--surface-hover) hover:text-(--text-primary)"}
               `}
             >
-              <span
+              {/* <span
                 className={`
                   flex h-8 w-8 items-center justify-center rounded-xl
-                  ${isActive ? "bg-white/10 text-[#c99a3a]" : "bg-[var(--surface)] text-[var(--text-secondary)]"}
+                  ${isActive ? "bg-white/8 text-(--text-primary)" : "bg-(--surface) text-(--text-secondary)"}
                 `}
+              > */}
+              <span
+                className={`
+    flex h-8 w-8 items-center justify-center rounded-xl
+    ${isActive ? "bg-white/8 text-(--text-primary)" : "bg-(--surface) text-(--text-secondary)"}
+  `}
               >
                 <Icon size={16} strokeWidth={2.2} />
               </span>

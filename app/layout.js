@@ -24,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="da" suppressHydrationWarning>
-      <body className={`${geist.variable} ${geistMono.variable}`}>
+      <body className={`${geist.variable} ${geistMono.variable} bg-[color-mix(in_srgb,var(--bg)_90%,transparent)]`}>
         <ReactQueryProvider>
           <ThemeProvider>{children}</ThemeProvider>
         </ReactQueryProvider>

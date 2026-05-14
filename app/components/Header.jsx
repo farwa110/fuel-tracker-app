@@ -13,14 +13,14 @@ function ThemeToggle({ theme, toggleTheme }) {
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
       className="
         inline-flex items-center gap-2 rounded-full
-        border border-[var(--border)]
-        bg-[var(--surface)]
+        border border-(--border)
+        bg-(--surface)
         px-3 py-2 text-sm font-medium
-        text-[var(--text-secondary)]
-        shadow-[var(--shadow-sm)]
+        text-(--text-secondary)
+        shadow-(--shadow-sm)
         transition-all duration-200
-        hover:border-[var(--border-strong)]
-        hover:text-[var(--text-primary)]
+        hover:border-(--border-strong)
+        hover:text-(--text-primary)
       "
     >
       <span className="text-base">{theme === "light" ? "☾" : "☀"}</span>
@@ -61,11 +61,11 @@ function DateTimeDisplay() {
   return (
     <div
       className="
-        rounded-full border border-[var(--border)]
-        bg-[var(--surface)]
+        rounded-full border border-(--border)
+        bg-(--surface)
         px-3 py-2 text-sm font-medium
-        text-[var(--text-secondary)]
-        shadow-[var(--shadow-sm)]
+        text-(--text-secondary)
+        shadow-(--shadow-sm)
       "
     >
       <span className="hidden min-[500px]:inline">
@@ -84,16 +84,16 @@ export default function Header() {
     <header
       className="
         sticky top-0 z-40
-        border-b border-[var(--border)]
+        border-b border-(--border)
         bg-[color-mix(in_srgb,var(--bg)_88%,transparent)]
         backdrop-blur-xl
-        min-[500px]:lg:ml-[280px]
+      w-full left-0 right-0
       "
     >
       <div
         className="
-          flex h-16 items-center justify-end
-          px-4 sm:px-6 lg:px-8
+          flex items-center justify-end
+          px-4 sm:px-6 lg:px-8 py-4
         "
       >
         <div className="flex items-center gap-3">
