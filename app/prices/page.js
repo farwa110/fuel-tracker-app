@@ -1,18 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Header from "@/app/components/Header";
-import MetricsRow from "@/app/components/MetricsRow";
-import FuelPills from "@/app/components/FuelPills";
-import StationList from "@/app/components/StationList";
-import NearestStationsPanel from "@/app/components/NearestStationsPanel";
-import CitiesTab from "@/app/components/CitiesTab";
-import HistoryTab from "@/app/components/HistoryTab";
-import Sidebar from "@/app/components/Sidebar";
+import Header from "../../components/Header";
+import MetricsRow from "../../components/MetricsRow";
+import FuelPills from "../../components/FuelPills";
+import StationList from "../../components/StationList";
+import NearestStationsPanel from "../../components/NearestStationsPanel";
 
-import { useFuelData } from "@/app/hooks/useFuelData";
+import HistoryTab from "../../components/HistoryTab";
+import Sidebar from "../../components/Sidebar";
+import MobileNav from "../../components/MobileNav";
+import { useFuelData } from "../hooks/useFuelData";
+import DashboardPanel from "../../components/DashboardPanel";
+import MapPanel from "../../components/MapPanel";
+import CitiesMapTab from "../../components/CitiesMapTab";
 
 function FavoritesTab({ allStations, favorites, fuel, onFavToggle }) {
   const favStations = allStations.filter((s) => favorites.has(s.stationId));
@@ -42,6 +45,7 @@ function FavoritesTab({ allStations, favorites, fuel, onFavToggle }) {
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState("nearby");
+  const [visibleCount, setVisibleCount] = useState(5);
 
   const [favorites, setFavorites] = useState(() => {
     if (typeof window === "undefined") return new Set();
@@ -54,6 +58,9 @@ export default function Page() {
   });
 
   const { stations, allStations, citiesSummary, updatedAt, loading, isFetching, isError, error, fuel, setFuel, query, setQuery, geo, hasLocation } = useFuelData();
+  useEffect(() => {
+    setVisibleCount(5);
+  }, [query]);
 
   function toggleFav(stationId) {
     setFavorites((prev) => {
@@ -74,7 +81,7 @@ export default function Page() {
 
     return station.name?.toLowerCase().includes(search) || station.brand?.toLowerCase().includes(search) || station.city?.toLowerCase().includes(search) || station.address?.toLowerCase().includes(search);
   });
-
+  const visibleStations = filteredStations.slice(0, visibleCount);
   return (
     <>
       <Sidebar
@@ -85,6 +92,7 @@ export default function Page() {
         }}
         updatedAt={updatedAt}
       />
+      <MobileNav activeTab={activeTab} onTabChange={setActiveTab} updatedAt={updatedAt} />
 
       <div className="lg:ml-60">
         <Header updatedAt={updatedAt} stationCount={allStations.length} isFetching={isFetching} />
@@ -97,7 +105,8 @@ export default function Page() {
           {/* soft dark layer for dashboard depth */}
           {/* <div className="pointer-events-none absolute inset-0 bg-[color-mix(in_srgb,var(--bg)_92%,transparent)]" /> */}
 
-          <div className="relative z-10 grid grid-cols-1 gap-6 p-4 pt-16 sm:p-6 sm:pt-18 lg:p-8 lg:pt-20 min-[900px]:grid-cols-[1fr_360px]">
+          {/* <div className="relative z-10 grid grid-cols-1 gap-6 p-4 pt-16 sm:p-6 sm:pt-18 lg:p-8 lg:pt-20 min-[900px]:grid-cols-[1fr_360px]"> */}
+          <div className="relative z-10 mx-auto max-w-7xl p-4 pt-16 sm:p-6 sm:pt-18 lg:p-8 lg:pt-20">
             <section>
               {isError && (
                 <div
@@ -115,37 +124,46 @@ export default function Page() {
                 </div>
               )}
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{
-                    duration: 0.22,
-                    ease: [0.23, 1, 0.32, 1],
-                  }}
-                >
+              {/* <MetricsRow allStations={allStations} fuel={fuel} /> */}
+              {activeTab !== "history" && <MetricsRow allStations={allStations} fuel={fuel} />}
+
+              {/* <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]"> */}
+              {/* <div className={activeTab === "cities" ? "grid gap-5" : "grid gap-5 lg:grid-cols-[1.15fr_0.85fr]"}> */}
+              <div className={activeTab === "cities" || activeTab === "history" ? "grid gap-5" : "grid gap-5 lg:grid-cols-[1.15fr_0.85fr]"}>
+                <div>
                   {activeTab === "nearby" && (
                     <>
-                      <MetricsRow allStations={allStations} fuel={fuel} />
-
                       <FuelPills selected={fuel} onChange={setFuel} />
-
                       <NearestStationsPanel allStations={allStations} fuel={fuel} setFuel={setFuel} geo={geo} hasLocation={hasLocation} />
                     </>
                   )}
 
-                  {activeTab === "cities" && <CitiesTab citiesSummary={citiesSummary} loading={loading} />}
+                  {/* {activeTab === "cities" && <CitiesTab citiesSummary={citiesSummary} loading={loading} />} */}
+                  {activeTab === "cities" && <CitiesMapTab citiesSummary={citiesSummary} allStations={allStations} fuel={fuel} setFuel={setFuel} />}
 
                   {activeTab === "history" && <HistoryTab />}
 
                   {activeTab === "favorites" && <FavoritesTab allStations={allStations} favorites={favorites} fuel={fuel} onFavToggle={toggleFav} />}
-                </motion.div>
-              </AnimatePresence>
-            </section>
+                </div>
 
-            <StationList stations={filteredStations} fuel={fuel} loading={loading} query={query} onQueryChange={setQuery} favorites={favorites} onFavToggle={toggleFav} hasLocation={false} />
+                {/* {activeTab !== "cities" && ( */}
+                {activeTab !== "cities" && activeTab !== "history" && (
+                  <div className="grid gap-5">
+                    <MapPanel stations={allStations} fuel={fuel} setFuel={setFuel} />
+
+                    <DashboardPanel title="Stations" subtitle="Search fuel stations">
+                      <StationList stations={visibleStations} fuel={fuel} loading={loading} query={query} onQueryChange={setQuery} favorites={favorites} onFavToggle={toggleFav} hasLocation={false} />
+
+                      {filteredStations.length > visibleCount && (
+                        <button onClick={() => setVisibleCount((prev) => prev + 5)} className="mt-4 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-medium transition hover:bg-[var(--bg-secondary)]">
+                          View 5 more stations
+                        </button>
+                      )}
+                    </DashboardPanel>
+                  </div>
+                )}
+              </div>
+            </section>
           </div>
         </main>
       </div>

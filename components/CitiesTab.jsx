@@ -141,6 +141,10 @@ export default function CitiesTab({ citiesSummary = [], loading = false }) {
   const [fuel, setFuel] = useState("benzin95");
   const [view, setView] = useState("bars"); // "bars" | "grid"
 
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  const visibleCities = citiesSummary.slice(0, visibleCount);
+
   const prices = citiesSummary.map((c) => c[fuel]).filter(Boolean);
   const maxPrice = Math.max(...prices);
   const minPrice = Math.min(...prices);
@@ -286,16 +290,22 @@ export default function CitiesTab({ citiesSummary = [], loading = false }) {
           <motion.div key={view + fuel} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
             {view === "bars" ? (
               <div>
-                {citiesSummary.map((city, i) => (
+                {/* {citiesSummary.map((city, i) => ( */}
+                {visibleCities.map((city, i) => (
                   <CityBar key={city.name} city={city.name} value={city[fuel]} max={maxPrice} isMin={city[fuel] === minPrice} isMax={city[fuel] === maxPrice} index={i} />
                 ))}
               </div>
             ) : (
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px,1fr))", gap: 8 }}>
-                {citiesSummary.map((city, i) => (
+                {visibleCities.map((city, i) => (
                   <CityCard key={city.name} city={city} fuel={fuel} isMin={city[fuel] === minPrice} index={i} />
                 ))}
               </div>
+            )}
+            {citiesSummary.length > visibleCount && (
+              <button onClick={() => setVisibleCount((prev) => prev + 8)} className="mt-4 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--bg-secondary)]">
+                View more cities
+              </button>
             )}
           </motion.div>
         </AnimatePresence>
