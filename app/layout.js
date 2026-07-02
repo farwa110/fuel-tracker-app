@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/app/components/ThemeProvider";
-import { ReactQueryProvider } from "@/app/components/ReactQueryProvider";
+import { ThemeProvider } from "../components/ThemeProvider";
+import { ReactQueryProvider } from "../components/ReactQueryProvider";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 
 const geist = Geist({
   subsets: ["latin"],

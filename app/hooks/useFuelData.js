@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchAllStations, getCheapest, getAverage, filterStations, sortByPrice } from "@/app/lib/api";
-import { useGeolocation } from "@/app/hooks/useGeolocation";
+import { fetchAllStations, getCheapest, getAverage, filterStations, sortByPrice } from "../lib/api";
+import { useGeolocation } from "../hooks/useGeolocation";
 
 function haversine(lat1, lng1, lat2, lng2) {
   const R = 6371,

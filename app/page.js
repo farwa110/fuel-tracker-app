@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import HomeHeader from "./components/HomeHeader";
-import { useTheme } from "./components/ThemeProvider";
+import HomeHeader from "../components/HomeHeader";
+import { useTheme } from "../components/ThemeProvider";
 
 export default function Home() {
   const { theme } = useTheme();
